@@ -1,0 +1,35 @@
+<div class="title" *ngIf="ref=='add'">Add Post</div>
+<div class="title" *ngIf="ref=='update'">Update Post</div>
+
+
+<form class="example-form" [formGroup]="myformbuilder">
+    
+  
+    <mat-form-field class="w-75">
+        <mat-label>Enter title</mat-label>
+        <input matInput formControlName="title" >
+        <mat-error *ngIf="myformbuilder.get('title').invalid && myformbuilder.get('title').touched">
+          Title is required
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="w-75 content">
+        <mat-label>Enter Content</mat-label>
+        <textarea matInput  formControlName="content" ></textarea>
+        <mat-error *ngIf="myformbuilder.get('content').invalid && myformbuilder.get('content').touched">
+          Content is required
+        </mat-error>
+      </mat-form-field>
+    <br>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="addPost()" *ngIf="ref === 'add'">Add Post</button>     
+       <button mat-raised-button class="bg-success" (click)="close()"  *ngIf="ref === 'update'">update Post</button>
+
+    <button mat-raised-button mat-dialog-close >Exit</button>
+    </mat-dialog-actions>
+    
+
+  </form>
+  
+<p *ngIf="message=='error'" class="alert alert-danger mt-4 w-75 mx-auto">Please make sure that you're complete all fields</p>
+  
